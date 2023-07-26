@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="stylesheet" href="{{asset('css/style_quest.css')}}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+	</head>
+
+	<body>
+		<a class="nav-link" href="{{path('app_home')}}">HOME</a>
+		<a class="nav-link" href="{{path('app_login')}}">LOGIN</a>
+
+		<center>
+			<h2>Questions List</h2>
+		</center>
+		<div class="tabletoc">
+			<table>
+
+				{% for val in question %}
+
+                    {{ loop.index % 3==1 ? '<tr>':'' }}
+                    <td>
+                        <div class="container">
+                            <div class="wrapper">
+                                <div class="banner-image"></div>
+                                <h1>
+                                    {{val.owner.Firstname}}
+                                </h1>
+                                <p>
+                                    <b>{{ val.askedAt|ago }}--</b>
+                                    <br>{{ val.question|u.truncate(40, ' ..?') }}</br>
+                                    {% if is_granted('EDIT', val) %}
+                                    <a class="edit-link" href="{{path('question_edit', 
+                                    {
+                                        id: val.id
+                                    }) }}"><i class="fa fa-edit"></i>EDIT</a>
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="button-wrapper">
+                                <button class="btn outline">{{val.votes}}
+                                    VOTES</button>
+                                <button class="btn fill">VOTE NOW</button>
+                            </div>
+                        </div>
+                    </td>
+                    {{ loop.index % 3==0 ? '</tr>':'' }}
+
+				{% endfor %}
+
+			</table>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,9 @@
+@import "~bootstrap";
+body {
+    background-color: rgb(255, 255, 255);
+}
+.register{
+    background-color: rgb(240, 239, 239);
+    padding: 30px 25px;
+    border-radius: 9px;
+}

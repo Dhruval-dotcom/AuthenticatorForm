@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>login Form</title>
+
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="{{asset('css/style.css')}}"/>
+	</head>
+	<body>
+		<div class="background">
+			<div class="shape"></div>
+			<div class="shape"></div>
+		</div>
+		<center>
+			<div class="error">
+				{% if error %}
+					{{ error.messageKey|trans(error.messageData,'security') }}
+				{% endif %}
+			</div>
+		</center>
+		{% for flash in app.flashes('success') %}
+            <div class="alert">{{ flash }}</div>
+        {% endfor %}
+		<form method="POST">
+			<h3>Login</h3>
+
+			<label for="username">Username</label>
+			<input class="input_cl" type="text" name="email" placeholder="Email or Phone" id="username">
+
+			<label for="password">Password</label>
+			<input class="input_cl" type="password" name="password" placeholder="Password" id="password">
+
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+			<input class="remember" type="checkbox" name="_remember_me" id="remember_me">
+			<label class="rm" for="remember_me">Remember Me</label>
+
+			<button type="submit">Log In</button>
+			<div class="social">
+				<div class="go">
+					<a href="{{path('app_register')}}"><i class="fab fa-google"></i>
+					REGISTER</a></div>
+				<div class="fb">
+					<i class="fab fa-facebook"></i>
+					FACEBOOK</div>
+			</div>
+		</form>
+	</body>
+</html>

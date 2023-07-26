@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="stylesheet" href="{{asset('css/style_quest.css')}}">
+
+	</head>
+
+	<body>
+		<a class="nav-link" href="{{path('app_home')}}">HOME</a>
+		<a class="nav-link" href="{{path('question')}}">QUESTIONS</a>
+        <a class="nav-link" href="{{path('app_login')}}">LOGIN</a>
+
+		<center>
+			<h2>Edit Question</h2>
+		</center>
+		<div class="tabletoc">
+			<table>
+				<tr>
+					<td >
+						<div class="container" style="width:250px;">
+							<div class="wrapper">
+								<div class="banner-image"></div>
+								<h1>
+									{{val.owner.Firstname}}
+								</h1>
+								<p>
+									<b>{{ val.askedAt|date }}--</b><br>{{ val.question|u.truncate(40, ' ..?') }}</p>
+							</div>
+							<div class="button-wrapper">
+								<button class="btn outline">{{val.votes}}
+									VOTES</button>
+								<button class="btn fill">VOTE NOW</button>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</body>
+</html>
